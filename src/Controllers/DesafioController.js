@@ -1,4 +1,5 @@
 import Desafio from '../Models/Desafio';
+import Usuario from '../Models/Usuario';
 import * as Yup from 'yup';
 
 class DesafioController{
@@ -11,14 +12,15 @@ class DesafioController{
             author: Yup.string().required(),
             titulo: Yup.string().required(),
             content: Yup.string().required(),
-            dataFim: Yup.date().required()
+            dataFim: Yup.string().required()
         });
+        console.log(req.body);
         if (!(await schema.isValid(req.body))) {
             return res.status(400).json({
                 error: 'Erro nos campos'
             });
         }
-        const existeDesafio = Usuario.findOne({
+        const existeDesafio = await Usuario.findOne({
             titulo: req.body.titulo
         });
 

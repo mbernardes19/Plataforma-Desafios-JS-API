@@ -23,7 +23,10 @@ app.use(cors());
 app.use(express.json());
 
 // Main Routes
-app.use(require("./routes"));
+app.use(require("./Routes/routes"));
+app.use(require('./Routes/Desafio.routes'));
+app.use(require('./Routes/Submissao.routes'));
+app.use(require('./Routes/Usuario.routes'));
 
 
 // Error 404
