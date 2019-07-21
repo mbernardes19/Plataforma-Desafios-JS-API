@@ -14,20 +14,20 @@ exports.create = async (req, res) => {
   if (!req.body.author || !req.body.titulo || !req.body.content || !req.body.dataInicio || !req.body.dataFim) {
     return res
       .status(400)
-      .send({success: false, message: 'Os campos não podem ser vazios'});
+      .send({ success: false, message: 'Os campos não podem ser vazios' });
   }
 
   const novoDesafio = new Desafio(req.body);
-  
+
   await novoDesafio.save((err, desafio) => {
     if (err) {
       return res
         .status(422)
-        .send({success: false, message: err.message});
+        .send({ success: false, message: err.message });
     }
     return res
       .status(200)
-      .send({message: 'Desafio criado com sucesso!', desafio})
+      .send({ message: 'Desafio criado com sucesso!', desafio });
   });
 };
 
